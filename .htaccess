@@ -1,0 +1,7 @@
+    ErrorDocument 404 /vibin/404.php
+    #ganti ke /404.php biar root
+    RewriteEngine on
+    RewriteRule ^(messages|post|miscellaneous|404.php|404|index.php)($|/) - [L]
+    RewriteRule ^\s*$ - [L]
+    RewriteRule ^([^\/]*)$ ?username=$1 [QSA,L]
+    

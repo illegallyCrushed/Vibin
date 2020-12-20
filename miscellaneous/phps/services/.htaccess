@@ -1,0 +1,2 @@
+    RewriteEngine on
+    RewriteRule ^(connect.php)($|/) index.php [L]
