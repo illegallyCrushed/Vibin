@@ -489,8 +489,6 @@ if (isset($page)) {
         border-radius: 50px;
         border-style: solid;
         transition: border-color 0.75s, transform 0.75s;
-        height: 30px;
-        width: 30px;
         overflow: hidden;
         display: grid;
         place-items: center;
@@ -1192,8 +1190,8 @@ if (isset($page)) {
                     let actionid = JSONactiondata.actionid;
                     let actiontype = JSONactiondata.actiontype;
                     let actiontime = JSONactiondata.actiontime;
-                    let datetime =  
-                    let datetimestr 
+                    let datetime = "";
+                    let datetimestr = "";
                     let username = "";
                     let extension = "";
                     let detailarea = "";
