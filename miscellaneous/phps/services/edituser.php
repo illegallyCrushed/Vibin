@@ -152,6 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_SESSION['username']) && isse
       $modifyUserQuery = "UPDATE user SET realname  = ?, biography = ?, extension  = ? WHERE username = ?";
       $modifyUser = $pdo->prepare($modifyUserQuery);
       $modifyUser->execute([trim($setRealname), trim($setBiography), $setExtension, $_SESSION['username']]);
+      $_SESSION['extension'] = $setExtension;
     }
     $errorCodes->imgstatus = $imgStatus;
     $errorCodes->imgprocessedstatus = $imgProcessedStatus;
