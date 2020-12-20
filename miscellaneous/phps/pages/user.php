@@ -1414,9 +1414,9 @@ $bottomGalleryID = 0;
                 <?php if ($loggedIn && $profileData->followyou == 1) { ?>
                     <div class="profile-header-container-info-followstatus">Follows You</div>
                 <?php } ?>
-                <div class="profile-header-container-info-realname"><?= $profileData->realname ?></div>
+                <div class="profile-header-container-info-realname"><?= htmlspecialchars($profileData->realname)     ?></div>
                 <div class="profile-header-container-info-bio">
-                    <?php echo str_replace("\n", "<br>", $profileData->biography); ?>
+                    <?php echo str_replace("\n", "<br>", htmlspecialchars($profileData->biography)); ?>
                 </div>
             </div>
             <div class="profile-header-container-actions">

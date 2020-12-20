@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['requestmode']) && isse
     while ($messageRow = $messageFetch->fetch()) {
       $messageData = new \stdClass();
       $messageData->id = $messageRow['message_id'];
-      $messageData->text = $messageRow['text'];
+      $messageData->text = htmlspecialchars($messageRow['text']);
       $messageData->time = $messageRow['message_time'];
       $messageData->status = $messageRow['message_read_status'];
 
@@ -132,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['requestmode']) && isse
     while ($messageRow = $messageFetch->fetch()) {
       $messageData = new \stdClass();
       $messageData->id = $messageRow['message_id'];
-      $messageData->text = $messageRow['text'];
+      $messageData->text =htmlspecialchars($messageRow['text']);
       $messageData->time = $messageRow['message_time'];
       $messageData->status = $messageRow['message_read_status'];
 

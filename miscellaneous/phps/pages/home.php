@@ -897,7 +897,7 @@ if (!isset($page)) {
                 </div>
                 <div class="postbox-caption">
                     <span class="postbox-caption-username" data-userid="%/username/%" onclick="window.location.href='./'+$(this).data('userid')" >
-                        <a href='./username'>%/username/%</a> 
+                        <a href='./%/username/%'>%/username/%</a> 
                     </span>
                     %/captionarea/%
                 </div>

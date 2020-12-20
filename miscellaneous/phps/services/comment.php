@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_SESSION['username']) && isse
         $commentData->id = $commentRow['comment_id'];
         $commentData->username = $commentRow['username'];
         $commentData->extension = $commentRow['extension'];
-        $commentData->text = $commentRow['comment_text'];
+        $commentData->text = htmlspecialchars($commentRow['comment_text']);
         $commentData->datetime = $commentRow['comment_time'];
         $commentData->deleteperms = 0;
         if ($commentRow['username'] == $_SESSION['username'] || $checkPostFetch['username'] == $_SESSION['username']) {

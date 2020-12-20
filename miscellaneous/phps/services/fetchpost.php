@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_SESSION['username']) && isse
       $postData->postid = $postRow['post_id'];
       $postData->postusername = $postRow['username'];
       $postData->postdatetime = $postRow['post_time'];
-      $postData->postcaption = $postRow['caption'];
+      $postData->postcaption = htmlspecialchars($postRow['caption']);
       $postData->postextension = $postRow['extension'];
 
       if ($postRow['username'] == $_SESSION['username']) {
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_SESSION['username']) && isse
       while ($commentRow = $commentFetch->fetch()) {
         $commentData = new \stdClass();
         $commentData->username = $commentRow['username'];
-        $commentData->text = $commentRow['comment_text'];
+        $commentData->text = htmlspecialchars($commentRow['comment_text']);
         $commentArray[] = $commentData;
       }
 
@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_SESSION['username']) && isse
       $postData->postid = $postRow['post_id'];
       $postData->postusername = $postRow['username'];
       $postData->postdatetime = $postRow['post_time'];
-      $postData->postcaption = $postRow['caption'];
+      $postData->postcaption = htmlspecialchars($postRow['caption']);
       $postData->postextension = $postRow['extension'];
 
       if ($postRow['username'] == $_SESSION['username']) {
@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_SESSION['username']) && isse
       while ($commentRow = $commentFetch->fetch()) {
         $commentData = new \stdClass();
         $commentData->username = $commentRow['username'];
-        $commentData->text = $commentRow['comment_text'];
+        $commentData->text = htmlspecialchars($commentRow['comment_text']);
         $commentArray[] = $commentData;
       }
 
@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_SESSION['username']) && isse
       $postData->postid = $postRow['post_id'];
       $postData->postusername = $postRow['username'];
       $postData->postdatetime = $postRow['post_time'];
-      $postData->postcaption = $postRow['caption'];
+      $postData->postcaption = htmlspecialchars($postRow['caption']);
       $postData->postextension = $postRow['extension'];
 
       if ($postRow['username'] == $_SESSION['username']) {
@@ -259,7 +259,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_SESSION['username']) && isse
       while ($commentRow = $commentFetch->fetch()) {
         $commentData = new \stdClass();
         $commentData->username = $commentRow['username'];
-        $commentData->text = $commentRow['comment_text'];
+        $commentData->text = htmlspecialchars($commentRow['comment_text']);
         $commentArray[] = $commentData;
       }
 
