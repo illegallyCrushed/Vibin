@@ -1145,7 +1145,7 @@ if (isset($page)) {
                 function createActionObject(JSONactiondata){
                     let requiredbaseaction = 
                     \`
-                    <div id="user_%/username/%" class="notify-container-tabs" data-actionid="%/actionid/%" %/detailid/% data-actiontype="%/actiontype/%" data-userid="%/username/%" onclick="accessAction(this)">
+                    <div id="action_%/actionid/%" class="notify-container-tabs" data-actionid="%/actionid/%" %/detailid/% data-actiontype="%/actiontype/%" data-userid="%/username/%" onclick="accessAction(this)">
                         <div class="notify-container-tabs-header" data-userid="%/username/%" onclick="window.location.href='<?= $lochead ?>'+$(this).data('userid')">
                             <div class="notify-container-tabs-header-img">
                                 <img src="<?= $lochead ?>miscellaneous/assets/profiles/%/username/%.%/userext/%"></img>
@@ -1179,10 +1179,10 @@ if (isset($page)) {
 
                     let optionalfollow =
                     \`
-                    <div class="notify-container-tabs-header-follow %/followparam/%" data-userid="%/username/%" onclick="followRequest(this)">
+                    <div class="notify-container-tabs-header-follow %/followparam/%" data-actionid="%/actionid/%" data-userid="%/username/%" onclick="followRequest(this)">
                         Follow
                     </div>
-                    <div class="notify-container-tabs-header-following %/followingparam/%" data-userid="%/username/%" onclick="unfollowRequest(this)">
+                    <div class="notify-container-tabs-header-following %/followingparam/%" data-actionid="%/actionid/%" data-userid="%/username/%" onclick="unfollowRequest(this)">
                         Following
                     </div>
                     \`;
@@ -1273,6 +1273,7 @@ if (isset($page)) {
                 function followRequest(obj){
                     window.event.stopImmediatePropagation();
                     let username = $(obj).data("userid");
+                    let actionid = $(obj).data("actionid");
                     $.ajax({
                         url:"<?= $lochead ?>miscellaneous/phps/services/follow.php",
                         data:{
@@ -1283,7 +1284,7 @@ if (isset($page)) {
                         success:(data)=>{
                             if(data.errorcode.followstatus != 1){
                                 $(obj).addClass("d-none");
-                                $(".notify-container-tabs-header-following").removeClass("d-none");
+                                $("#action_"+actionid+" .notify-container-tabs-header-following").removeClass("d-none");
                                 if(pageVar == "profile"){
                                     $(".profile-header-container-top-detail-follower-inner-number").html(data.followcount);
                                     $(".profile-header-container-actions-follow").addClass("d-none");
@@ -1297,6 +1298,7 @@ if (isset($page)) {
                 function unfollowRequest(obj){
                     window.event.stopImmediatePropagation();
                     let username = $(obj).data("userid");
+                    let actionid = $(obj).data("actionid");
                     $.ajax({
                         url:"<?= $lochead ?>miscellaneous/phps/services/follow.php",
                         data:{
@@ -1307,7 +1309,7 @@ if (isset($page)) {
                         success:(data)=>{
                             if(data.errorcode.followstatus != 1){
                                 $(obj).addClass("d-none");
-                                $(".notify-container-tabs-header-follow").removeClass("d-none");
+                                $("#action_"+actionid+" .notify-container-tabs-header-follow").removeClass("d-none");
                                 if(pageVar == "profile"){
                                     $(".profile-header-container-top-detail-follower-inner-number").html(data.followcount);
                                     $(".profile-header-container-actions-following").addClass("d-none");
