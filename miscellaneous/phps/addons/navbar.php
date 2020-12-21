@@ -1688,10 +1688,10 @@ if (isset($page)) {
 
                     let requiredbasesearch = 
                     \`
-                    <div id="user_%/username/%" class="search-container-tabs" data-username="%/username/%" onclick="window.location.href='./'+$(this).data('username')">
+                    <div id="user_%/username/%" class="search-container-tabs" data-username="%/username/%" onclick="window.location.href='<?= $lochead ?>'+$(this).data('username')">
                         <div class="search-container-tabs-header">
                             <div class="search-container-tabs-header-img">
-                                <img src="./miscellaneous/assets/profiles/%/username/%.%/profpicextension/%"></img>
+                                <img src="<?= $lochead ?>miscellaneous/assets/profiles/%/username/%.%/profpicextension/%"></img>
                             </div>
                             <div class="search-container-tabs-header-text">
                                 <div class="search-container-tabs-header-text-username">

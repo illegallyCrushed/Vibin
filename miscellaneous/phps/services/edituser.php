@@ -13,8 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_SESSION['username']) && isse
   if ($_POST['requestmode'] == "init") {
     $userReply = new \stdClass();
     $userReply->username = $userData['username'];
-    $userReply->realname = $userData['realname'];
-    $userReply->biography = $userData['biography'];
+    $userReply->realname = htmlspecialchars($userData['realname']);
+    $userReply->biography = htmlspecialchars($userData['biography']);
     $userReply->extension = $userData['extension'];
     $jsonReply->userdata = $userReply;
   } elseif ($_POST['requestmode'] == "push") {

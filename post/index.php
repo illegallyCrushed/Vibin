@@ -333,7 +333,7 @@ $bottomCommentID = 0;
 
     .postbox-comments-segment-img img{
         width: 34px;
-        height: 34px;
+        height: 34px!important;
         border-radius: 50%;
     }
 
@@ -1409,7 +1409,7 @@ $bottomCommentID = 0;
                     <a href='../<?= $postData->postusername ?>'><?= $postData->postusername ?> </a>
                 </span>
                 <span class="postbox-caption-text">
-                    <?php echo str_replace("\n", "<br>", $postData->postcaption); ?>
+                    <?php echo str_replace("\n", "<br>", htmlspecialchars($postData->postcaption)); ?>
                 </span>
             </div>
             <div class="postbox-uploadtime" title="">
@@ -1431,7 +1431,7 @@ $bottomCommentID = 0;
                                 <a href='../<?= $commentData->username ?>'><?= $commentData->username ?></a>
                             </span>
                             <span class="postbox-comments-segment-inner-text">
-                                <?php echo str_replace("\n", "<br>", $commentData->text); ?>
+                                <?php echo str_replace("\n", "<br>", htmlspecialchars($commentData->text)); ?>
                             </span>
                             <div class="postbox-comments-segment-inner-time"></div>
                             <script>

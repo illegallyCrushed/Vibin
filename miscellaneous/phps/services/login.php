@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['username']) && isset($_POST['password'])) {
   $strUsername = strtolower($_POST['username']);
-  $strPassword = strtolower($_POST['password']);
+  $strPassword = $_POST['password'];
   $strUsernameStatus = 0;
   $strPasswordStatus = 0;
 

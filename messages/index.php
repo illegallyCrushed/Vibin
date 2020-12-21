@@ -623,12 +623,13 @@ if (!isset($_SESSION['username'])) {
             let mobileStatus = false;
             let requestUsername = "";
             let requestExtension = "";
-
             <?php if (isset($_GET['username']) && isset($_GET['extension'])) { ?>
-            requestUsername = "<?= $_GET['username'] ?>";
-            requestExtension = "<?= $_GET['extension'] ?>";
-            sanitizeURL();
-            createNewConversation(requestUsername);
+                requestUsername = "<?= $_GET['username'] ?>";
+                requestExtension = "<?= $_GET['extension'] ?>";
+                sanitizeURL();
+                fetchConversation(false,"",true,()=>{createNewConversation(requestUsername);});
+            <?php } else { ?>
+                fetchConversation();
             <?php } ?>
 
             function homeMessageAction() {
@@ -1035,12 +1036,10 @@ if (!isset($_SESSION['username'])) {
                     method: "POST",
                     success: (data)=>{
                         if(data.available == 1){
-                            const fetchthenopen = async()=>{
-                                const waitfor = await  fetchConversation();
-                                accessConversation($("#conv_"+data.convid)[0]);
-                            }
-                            fetchthenopen();
+                            //kalo nemu lama
+                            fetchConversation(true, data.convid);
                         }else{
+                            //kalo baru
                             let newConvJSON = {
                             id: "temp",
                             username: userid,
@@ -1051,6 +1050,7 @@ if (!isset($_SESSION['username'])) {
                             }
                             $("#conv_temp").remove();
                             let convDOMObj = createConversationObject(newConvJSON);
+                            $(".messagebox-messages-content").html("");
                             $(".messagebox-conversations-content").prepend(convDOMObj);
                             accessConversation($("#conv_temp")[0]);
                         }
@@ -1060,7 +1060,7 @@ if (!isset($_SESSION['username'])) {
                     
             }
 
-            function fetchConversation() {
+            function fetchConversation(open = false, convid ="", callback = false , func = ()=>{}) {
                 $.ajax({
                     url: "../miscellaneous/phps/services/message.php",
                     data: {
@@ -1074,13 +1074,18 @@ if (!isset($_SESSION['username'])) {
                                 let convDOMObj = createConversationObject(conv);
                                 $(".messagebox-conversations-content").append(convDOMObj);
                             });
+                            if(open){
+                                $("#conv_"+convid).trigger("click");
+                            }
+                            if(callback){
+                                func();
+                            }
                         }
                     },
                     error: ()=>{}
                 });
             }
 
-            fetchConversation();
 
             let bottomMessageID = 0;
             var lastMessageDate = "";
