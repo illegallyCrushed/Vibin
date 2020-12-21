@@ -224,6 +224,7 @@ if (!isset($_SESSION['username'])) {
         transition-duration: 0.4s;
         transition-timing-function: cubic-bezier(0.36, 0.55, 0.19, 1);
         transition-property: all;
+        max-height: 1.3rem;
     }
 
     .messagebox-conversations-content-tabs-header-text-preview-dot{
@@ -1001,7 +1002,7 @@ if (!isset($_SESSION['username'])) {
                 let messageid = JSONmessagedata.id;
                 let textarea = JSONmessagedata.text.replaceAll("\n","<br>");
                 let timestr = new Date(Date.parse(JSONmessagedata.time.replace(/[-]/g,'/')));
-                timestr = timestr.getHours().toString() + ":" + (timestr.getMinutes() < 10? "0" : "") + timestr.getMinutes().toString();
+                timestr = (timestr.getHours() < 10? "0" : "") + timestr.getHours().toString() + ":" + (timestr.getMinutes() < 10? "0" : "") + timestr.getMinutes().toString();
                 let readstatus = "";
                 if(JSONmessagedata.status == 1){
                     readstatus="Read";
@@ -1075,7 +1076,7 @@ if (!isset($_SESSION['username'])) {
                             });
                         }
                     },
-                    error: (x,y,z)=>{ console.log(x,y,z);}
+                    error: ()=>{}
                 });
             }
 
@@ -1112,6 +1113,8 @@ if (!isset($_SESSION['username'])) {
                                 let messageDOMObj = createMessageObject(message);
                                 $(".messagebox-messages-content").prepend(messageDOMObj);
                             });
+                            let timesepDOM = $.parseHTML('<div class="messagebox-messages-content-date">' + convertDateToString(lastMessageDateStr, true, true) + '</div>');
+                            $(".messagebox-messages-content").prepend(timesepDOM);
                             bottomMessageID = data.bottommessageid;
                             $(".messagebox-messages-content").scrollTop($("#message_"+bottomMessageID).offset().top);
                         }
@@ -1135,7 +1138,6 @@ if (!isset($_SESSION['username'])) {
                     },
                     method: "POST",
                     success: (data)=>{
-                        console.log(convoid, data);
                         if(data.count > 0){
                             lastMessageDate = data.messages[0].time.split(" ")[0];
                             lastMessageDateStr = data.messages[0].time;

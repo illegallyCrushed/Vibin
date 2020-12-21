@@ -34,7 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['requestmode']) && isse
            JOIN `message` ON `conversation`.last_message_id = `message`.message_id 
            JOIN user AS user_a ON `conversation`.username_a = user_a.username 
            JOIN user AS user_b ON `conversation`.username_b = user_b.username
-            WHERE username_a = ? OR username_b = ?";
+            WHERE username_a = ? OR username_b = ?
+            ORDER BY message_time DESC";
     $convFetch = $pdo->prepare($convFetchQuery);
     $convFetch->execute([$_SESSION['username'], $_SESSION['username']]);
 

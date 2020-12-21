@@ -798,8 +798,7 @@ $bottomGalleryID = 0;
                                                 });
                                             }
                                         },
-                                        error:(x,y,z)=>{
-                                            console.log(x,y,z);
+                                        error:()=>{
                                             $.confirm({
                                                 title: 'Something went wrong...',
                                                 icon: 'far fa-times-circle',
@@ -831,8 +830,7 @@ $bottomGalleryID = 0;
                     });
 
                 },
-                error:(x,y,z)=>{
-                    console.log(x,y,z);
+                error:()=>{
                     $.confirm({
                         title: 'Something went wrong...',
                         icon: 'far fa-times-circle',
