@@ -1,4 +1,4 @@
 <?php
-header("Location: /vibin/404/");
+header("Location: /404/");
 //ganti ke /404/ buat root/
 ?>
