@@ -44,7 +44,6 @@ if (!isset($page)) {
             width: 100%;
             height: 100%;
             float: left;
-            display: grid;
             place-items: center;
             z-index: 2;
         }

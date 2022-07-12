@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['email']) && isset($_PO
     //kalo semua aman, push ke database
     $registerPushQuery = "INSERT INTO user (username, password, email, biography, realname, extension) VALUES (?,?,?,?,?,?)";
     $registerPush = $pdo->prepare($registerPushQuery);
-    $registerPush->execute([$strUsername, $strPassword, $strEmail, "", "", ""]);
+    $registerPush->execute([$strUsername, password_hash($strPassword, PASSWORD_DEFAULT), $strEmail, "", "", ""]);
   }
 
   $errorCodes = new \stdClass();

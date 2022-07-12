@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['username']) && isset($
     //kalo password terisi
     if (isset($passwordCheck)) {
       //kalo acc ditemukan
-      if ($strPassword == $passwordCheck) {
+      if (password_verify($strPassword, $passwordCheck)) {
         //kalo password bener
         $strPasswordStatus = 0;
       } else {

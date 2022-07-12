@@ -133,7 +133,7 @@ CREATE TABLE `post` (
 
 CREATE TABLE `user` (
   `username` varchar(30) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `biography` text NOT NULL,
   `realname` varchar(40) NOT NULL,
